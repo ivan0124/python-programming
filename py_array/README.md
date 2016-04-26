@@ -1,3 +1,11 @@
-# python-programming
+# Array smaple code
 
-![image link](http://139.162.35.49/image/python-programming/coffeeghost-q-in-py_20160426.png)
+#How to setup code environment
+1. install `numpy` python module
+<pre>
+$ sudo apt-get install python-numpy
+</pre>
+
+#Code Description
+
+#How to test
