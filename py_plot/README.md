@@ -1,9 +1,11 @@
-# Array smaple code
+# Plot smaple code
 
 #How to setup code environment
 1. install `numpy` python module
 <pre>
-$ sudo apt-get install python-numpy
+$ sudo apt-get update
+$ sudo apt-get install python-numpy python-scipy
+$ sudo apt-get build-dep python-matplotlib
 </pre>
 
 #Code Description
