@@ -1,10 +1,12 @@
 #!/usr/bin/python
 
+import library as lib
+
 def main():
     print "Hello, World!"
 
     #input is nubmer
-    res=foo(10,5)
+    res=lib.funA(10,5)
     print "res number=%d" % (res)
     
     #input is string
@@ -14,6 +16,8 @@ def main():
 def foo(p1, p2):
     res=p1+p2
     return res
+
+print "__name__ value is %s" % (__name__)
 
 if __name__  == "__main__":
     main()
