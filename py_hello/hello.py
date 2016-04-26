@@ -13,6 +13,9 @@ def main():
     res=foo("777","333")
     print "res string=%s" % (res)
 
+    for i in range(1,10):
+        print "i=%d" % i
+
 def foo(p1, p2):
     res=p1+p2
     return res
