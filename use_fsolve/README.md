@@ -1,6 +1,6 @@
 # use_fsolve sample code
-The sample demo how to solve functon.
-`ex: solve 3x+1=0 ==> x=1/3`
+The sample demo how to return the roots of the (non-linear) equations defined by func(x) = 0 given a starting estimate.
+`ex: solve x^2-25=0 ==> x=5`
 
 #How to setup code environment
 1. install `numpy` python module
@@ -16,15 +16,15 @@ from scipy.optimize import fsolve
 ...
 </pre>
 
-2. implement function `3x+1=0`
+2. implement equation `x^2-25=0`
 <pre>
 ...
 def f(x):
-       return 3*x+1
+       return x**2+1
 ...
 </pre>
 
-3. use `fsolve` to get x solution:
+3. use `fsolve` to get roots `x`, starting estimate root is `1`:
 <pre>
 ...
        x = fsolve(f,1)
