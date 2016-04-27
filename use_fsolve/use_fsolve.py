@@ -3,11 +3,11 @@
 from scipy.optimize import fsolve
 
 def f(x):
-    return 3*x+1
+    return x**2-25
 
 def main():
 
-    x = fsolve(f,1)
+    x = fsolve(f,3)
     print x
    
 print "__name__ value is %s" % (__name__)
