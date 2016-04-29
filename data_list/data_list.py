@@ -3,14 +3,15 @@
 def main():
    
     #1 dimension 
-    a = [1,2,3,4,5]
+    data = [1,2,3,4,5]
     print "list x =======>"
-    for x in a:
+    for x in data:
         print x
     #
-    sol=[ 2*x+3 for x in a if (2*x+3) < 10]
-    print "2*x+3 < 10 list =======>"
-    print sol
+    for i in range(5):
+        sol=[ i*x+3 for x in data if (i*x+3) < 10]
+        print "%d*x+3 < 10 list =======>" % i
+        print sol
 
     #2 dimension
     a = [(1,2), (3,4),(9,8),(7,6),(5,4)]
