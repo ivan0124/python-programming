@@ -5,7 +5,7 @@
 <pre>
 $ sudo apt-get update
 $ sudo apt-get install python-numpy python-scipy
-$ sudo apt-get python-matplotlib
+$ sudo apt-get install python-matplotlib
 </pre>
 
 #Code Description
