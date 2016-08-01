@@ -4,8 +4,9 @@
 1. install `numpy` python module
 <pre>
 $ sudo apt-get update
-$ sudo apt-get install python-numpy python-scipy
-$ sudo apt-get python-matplotlib
+$ sudo apt-get install python-pip
+$ sudo pip install numpy
+$ sudo pip install pandas
 </pre>
 
 #Code Description
