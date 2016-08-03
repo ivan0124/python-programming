@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.colors import ListedColormap
 import configparser
+import ast
 from pla import Perceptron
 
 def plot_decision_regions(X, y, classifier, resolution=0.02): 
@@ -44,9 +45,17 @@ def main():
 
     config = configparser.ConfigParser()
     config.read('FILE.INI')
-    print(config['DEFAULT']['weight'])     # -> "/path/name/"
-    
-    ppn.set_w(np.array([-0.4, -0.66, 1.44]))
+    print(config['DEFAULT']['weight'])
+    a=config['DEFAULT']['weight']
+
+    #a='-0.4,-0.66,1.44'
+    print(a)
+    floats = map(float, a.split(','))
+    print('------------');
+    print(floats)
+    print('------------');
+
+    ppn.set_w( np.array(floats))
     Weight=ppn.get_w();
     print("fit weight W = %s" % Weight)
    
