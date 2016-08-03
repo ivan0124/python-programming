@@ -31,6 +31,9 @@ class Perceptron(object):
    def get_w(self):
        return self.w_
 
+   def set_w(self, w):
+       self.w_ = w
+
 def main():
     print ("Hello, pla.py!")
  
