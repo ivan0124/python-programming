@@ -19,11 +19,12 @@ def main():
     ppn = Perceptron(eta=0.1, n_iter=10) 
     #training data
     ppn.fit(X,y)
-    weight=ppn.get_w();
+    weight="%s" % (ppn.get_w())
+    print(weight)
 
     #save weight to file
     config = configparser.ConfigParser()
-    config['DEFAULT']['weight'] = repr(weight)    # update
+    config['DEFAULT']['weight'] = weight    # update
 
     with open('FILE.INI', 'w') as configfile:    # save
         config.write(configfile)
