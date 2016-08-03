@@ -50,19 +50,42 @@ def main():
     '''
 
     ppn = Perceptron(eta=0.1, n_iter=10) 
-    ppn.fit(X,y) 
-    '''
+    ppn.fit(X,y)
+    ''' 
     plt.plot(range(1, len(ppn.errors_) + 1), ppn.errors_, marker='o')
     plt.xlabel('Epochs')
     plt.ylabel('Number of misclassifications')
     plt.show()
     '''
-     
+    my_w=ppn.get_w();
+    print(my_w)
+   
+    print("----------")
+    test_X=np.array([3,2])
+    predict=ppn.predict(test_X);
+    print(predict)
+    '''
+    X=np.array([[ 2.1,  0.2],[ 0.3,  1.4],[2.1, 0.1]])
+    y=np.array([-1, 1,-1])
+    print(X)  
+    print("----------")
+    print(X[1:]) 
+    print("----------")
+    print(y) 
+    t=zip(X,y)
+    print(t)
+    for xi, target in zip(X,y):
+        print("----------")
+        print("xi=%s" % xi) 
+        print("target(y)=%s" % target)
+    ''' 
+    
     plot_decision_regions(X, y, classifier=ppn)
     plt.xlabel('sepal length [cm]')
     plt.ylabel('petal length [cm]')
     plt.legend(loc='upper left')
     plt.show();        
+   
  
 print ("__name__ value is %s" % (__name__))
 
