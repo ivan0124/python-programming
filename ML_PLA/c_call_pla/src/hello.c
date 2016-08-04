@@ -31,7 +31,7 @@ int main( int argc, char* argv[])
 
    if (PyCallable_Check(pFunc))
    {
-       pValue=Py_BuildValue("(z)",(char*)"FILE.INI");
+       pValue=Py_BuildValue("(z)",(char*)"../../py_call_py/FILE.INI");
        PyErr_Print();
        presult=PyObject_CallObject(pFunc,pValue);
        PyErr_Print();
