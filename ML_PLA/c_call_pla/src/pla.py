@@ -35,11 +35,11 @@ class Perceptron(object):
    def set_w(self, w):
        self.w_ = w
 
-def set_weight(file_path):
+def set_weight(config_path_name):
     ppn = Perceptron(eta=0.3, n_iter=10)
 
     config = configparser.ConfigParser()
-    config.read(file_path)
+    config.read(config_path_name)
     print(config['DEFAULT']['weight'])
     a=config['DEFAULT']['weight']
 
