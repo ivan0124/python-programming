@@ -16,25 +16,22 @@ def main():
     y = np.where(y == 'Iris-setosa', -1, 1)
     X = df.iloc[0:99, [0,2]].values
 
-    ppn = Perceptron(eta=0.1, n_iter=10) 
+    ppn = Perceptron(eta=0.3, n_iter=10) 
     #training data
     ppn.fit(X,y)
-    weight=ppn.get_w()
-    #weight="%s" % (ppn.get_w())
-    #weight=ppn.get_w()
-    s=''
-    for a in weight:
-        s+=str(a)
-        s+=','
-        print(s)
+    W=ppn.get_w()
 
-    #weight="%s" % (s)
-    s=s[:-1]
-    print(s)
+    weight=''
+    for v in W:
+        weight+=str(v)
+        weight+=','
+
+    weight=weight[:-1]
+    print("fit weight = %s" % (weight))
 
     #save weight to file
     config = configparser.ConfigParser()
-    config['DEFAULT']['weight'] = s    # update
+    config['DEFAULT']['weight'] = weight
 
     with open('FILE.INI', 'w') as configfile:    # save
         config.write(configfile)
