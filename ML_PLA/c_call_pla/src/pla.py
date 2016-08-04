@@ -44,19 +44,16 @@ def test(text):
     print(config['DEFAULT']['weight'])
     a=config['DEFAULT']['weight']
 
-    #a='-0.4,-0.66,1.44'
-    print(a)
+    print("read FILE.INI weight =%s" % a)
     floats = map(float, a.split(','))
-    print('------------');
-    print(floats)
-    print('------------');
 
+    print('------------');
+    print("set perceptron weight  = %s" % floats)
     ppn.set_w( np.array(floats))
     Weight=ppn.get_w();
-    print("fit weight W = %s" % Weight)
+    print("get perceptron weight  = %s" % Weight)
     print("----------")
-    return str(Weight)
-
+    return 0
 
 def main():
     print ("Hello, pla.py!")
