@@ -5,7 +5,7 @@
 int main( int argc, char* argv[])
 {
     //
-   setenv("PYTHONPATH",".",1);
+   setenv("PYTHONPATH","../../py_call_py/",1);
 
    PyObject *pName, *pModule, *pDict, *pFunc, *pValue, *presult;
 
