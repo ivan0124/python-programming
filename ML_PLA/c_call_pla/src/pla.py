@@ -36,7 +36,6 @@ class Perceptron(object):
        self.w_ = w
 
 def set_weight(config_path_name):
-    ppn = Perceptron(eta=0.3, n_iter=10)
 
     config = configparser.ConfigParser()
     config.read(config_path_name)
@@ -54,10 +53,20 @@ def set_weight(config_path_name):
     print("----------")
     return 0
 
+def predict(X):
+    print("predict")
+    print(ppn.get_w())
+
 def main():
-    print ("Hello, pla.py!")
+    print ("Hello, pla.py main() run!")
+    set_weight("FILE.INI")
+    predict("dd")
  
 print ("__name__ value is %s" % (__name__))
 
 if __name__  == "__main__":
+    ppn = Perceptron(eta=0.3, n_iter=10)
     main()
+else:
+    print("pla.py is loaded.");
+    ppn = Perceptron(eta=0.3, n_iter=10)
