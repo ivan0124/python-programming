@@ -29,23 +29,38 @@ int main( int argc, char* argv[])
 
 
    // pFunc is also a borrowed reference 
+   // set PLA perceptron weight
    pFunc = PyDict_GetItemString(pDict, (char*)"set_weight");
 
    if (PyCallable_Check(pFunc))
    {
        pValue=Py_BuildValue("(z)",(char*)"FILE.INI");
        PyErr_Print();
-       printf("Let's give this a shot!\n");
        presult=PyObject_CallObject(pFunc,pValue);
        PyErr_Print();
    } else 
    {
        PyErr_Print();
    }
-   printf("Result is %d\n",PyInt_AsLong(presult));
+   printf("(1)Result is %d\n",PyInt_AsLong(presult));
    Py_DECREF(pValue);
 
-   // Clean up
+   // try PLA predict function
+   pFunc = PyDict_GetItemString(pDict, (char*)"predict");
+
+   if (PyCallable_Check(pFunc))
+   {
+       pValue=Py_BuildValue("(z)",(char*)"5,2");
+       PyErr_Print();
+       presult=PyObject_CallObject(pFunc,pValue);
+       PyErr_Print();
+   } else
+   {
+       PyErr_Print();
+   }
+   printf("(2)Result is %d\n",PyInt_AsLong(presult));
+   Py_DECREF(pValue);
+// Clean up
    Py_DECREF(pModule);
    Py_DECREF(pName);
 
