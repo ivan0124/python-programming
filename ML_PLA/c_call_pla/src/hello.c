@@ -29,7 +29,7 @@ int main( int argc, char* argv[])
 
 
    // pFunc is also a borrowed reference 
-   pFunc = PyDict_GetItemString(pDict, (char*)"test");
+   pFunc = PyDict_GetItemString(pDict, (char*)"set_weight");
 
    if (PyCallable_Check(pFunc))
    {

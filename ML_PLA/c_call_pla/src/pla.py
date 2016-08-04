@@ -35,12 +35,11 @@ class Perceptron(object):
    def set_w(self, w):
        self.w_ = w
 
-def test(text):
-    print("[PLA] test");
+def set_weight(file_path):
     ppn = Perceptron(eta=0.3, n_iter=10)
 
     config = configparser.ConfigParser()
-    config.read(text)
+    config.read(file_path)
     print(config['DEFAULT']['weight'])
     a=config['DEFAULT']['weight']
 
@@ -57,7 +56,6 @@ def test(text):
 
 def main():
     print ("Hello, pla.py!")
-    test('111')
  
 print ("__name__ value is %s" % (__name__))
 
