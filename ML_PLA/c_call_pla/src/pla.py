@@ -40,7 +40,7 @@ def test(text):
     ppn = Perceptron(eta=0.3, n_iter=10)
 
     config = configparser.ConfigParser()
-    config.read('FILE.INI')
+    config.read(text)
     print(config['DEFAULT']['weight'])
     a=config['DEFAULT']['weight']
 

@@ -18,7 +18,7 @@ int main( int argc, char* argv[])
 
 
    // Build the name object
-   pName = PyString_FromString((char*)"arbName");
+   pName = PyString_FromString((char*)"pla");
 
    // Load the module object
    pModule = PyImport_Import(pName);
@@ -29,11 +29,11 @@ int main( int argc, char* argv[])
 
 
    // pFunc is also a borrowed reference 
-   pFunc = PyDict_GetItemString(pDict, (char*)"someFunction");
+   pFunc = PyDict_GetItemString(pDict, (char*)"test");
 
    if (PyCallable_Check(pFunc))
    {
-       pValue=Py_BuildValue("(z)",(char*)"something");
+       pValue=Py_BuildValue("(z)",(char*)"FILE.INI");
        PyErr_Print();
        printf("Let's give this a shot!\n");
        presult=PyObject_CallObject(pFunc,pValue);
