@@ -19,16 +19,25 @@ def main():
     ppn = Perceptron(eta=0.1, n_iter=10) 
     #training data
     ppn.fit(X,y)
-    weight="%s" % (ppn.get_w())
-    print(weight)
+    weight=ppn.get_w()
+    #weight="%s" % (ppn.get_w())
+    #weight=ppn.get_w()
+    s=''
+    for a in weight:
+        s+=str(a)
+        s+=','
+        print(s)
+
+    #weight="%s" % (s)
+    s=s[:-1]
+    print(s)
 
     #save weight to file
     config = configparser.ConfigParser()
-    config['DEFAULT']['weight'] = weight    # update
+    config['DEFAULT']['weight'] = s    # update
 
     with open('FILE.INI', 'w') as configfile:    # save
         config.write(configfile)
-
     #plot 
     plt.plot(range(1, len(ppn.errors_) + 1), ppn.errors_, marker='o')
     plt.xlabel('Epochs')
