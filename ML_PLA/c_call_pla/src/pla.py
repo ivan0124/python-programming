@@ -55,12 +55,18 @@ def set_weight(config_path_name):
 
 def predict(X):
     print("predict")
-    print(ppn.get_w())
+    print("----------")
+    floats = map(float, X.split(','))
+    X_point=np.array(floats)
+    predict=ppn.predict(X_point);
+    print("X_point = %s, predict result = %d" % (X_point,predict))
+    return predict
+
 
 def main():
     print ("Hello, pla.py main() run!")
     set_weight("FILE.INI")
-    predict("dd")
+    predict("5,3")
  
 print ("__name__ value is %s" % (__name__))
 
