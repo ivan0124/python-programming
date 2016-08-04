@@ -4,9 +4,6 @@
 
 int main( int argc, char* argv[])
 {
-    printf("Hello World\n");
-    fnA();
-
     //
    setenv("PYTHONPATH",".",1);
 
