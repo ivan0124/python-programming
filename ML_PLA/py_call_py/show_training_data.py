@@ -11,14 +11,14 @@ def main():
     df.tail();
 
     y = df.iloc[0:99, 2].values
-    y = np.where(y == 'Iris-setosa', -1, 1)
+    y = np.where(y == 'Normal', -1, 1)
     X = df.iloc[0:99, [0,1]].values
     
-    plt.scatter(X[:49, 0], X[:49, 1], color='red', marker='o', label='setosa')
-    plt.scatter(X[49:99, 0], X[49:99, 1], color='blue', marker='x', label='versicolor')
+    plt.scatter(X[:49, 0], X[:49, 1], color='red', marker='o', label='Normal')
+    plt.scatter(X[49:99, 0], X[49:99, 1], color='blue', marker='x', label='Abnormal')
 
-    plt.xlabel('petal length')
-    plt.ylabel('sepal length')
+    plt.xlabel('Temperature')
+    plt.ylabel('Humidity')
     plt.legend(loc='upper left')
 
     plt.show()
