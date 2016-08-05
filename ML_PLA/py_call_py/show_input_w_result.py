@@ -3,13 +3,13 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib.colors import ListedColormap
 import configparser
 import ast
+from matplotlib.colors import ListedColormap
 from pla import Perceptron
 
 def plot_decision_regions(X, y, classifier, resolution=0.02): 
-    markers = ('s', 'x', 'o', '^', 'v')
+    markers = ('x', 'o', 'o', '^', 'v')
     colors = ('red', 'blue', 'lightgreen', 'gary', 'cyan')
     cmap = ListedColormap(colors[:len(np.unique(y))])
     #plot the decision surface
@@ -21,7 +21,7 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
 
     Z = classifier.predict(np.array( [xx1.ravel(), xx2.ravel()]).T)
     Z = Z.reshape(xx1.shape)
-  
+
     plt.contourf(xx1,xx2, Z, alpha=0.4, cmap=cmap)
     plt.xlim(xx1.min(), xx1.max())
     plt.ylim(xx2.min(), xx2.max())
@@ -42,7 +42,7 @@ def main():
 
     ppn = Perceptron(eta=0.1, n_iter=10) 
     #ppn.fit(X,y)
-
+    
     config = configparser.ConfigParser()
     config.read('FILE.INI')
     print(config['DEFAULT']['weight'])
