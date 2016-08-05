@@ -1,4 +1,4 @@
-# Plot smaple code
+# PLA(Perceptron Linear Algorithm) sample code
 
 #How to setup code environment (on Ubuntu)
 <pre>
