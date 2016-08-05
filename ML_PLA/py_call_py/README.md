@@ -1,7 +1,6 @@
 # Plot smaple code
 
-#How to setup code environment
-1. install `numpy` python module
+#How to setup code environment (on Ubuntu)
 <pre>
 $ sudo apt-get update
 $ sudo apt-get install python-pip
