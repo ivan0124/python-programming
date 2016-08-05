@@ -8,7 +8,12 @@ $ sudo pip install numpy
 $ sudo pip install pandas
 </pre>
 
-How to setup code environment (on Windows)
+#How to setup code environment (on Windows)
+<pre>
+$ pip install pandas
+$ pip install numpy
+$ pip install matplotlib
+</pre>
 
 #Code Description
 
