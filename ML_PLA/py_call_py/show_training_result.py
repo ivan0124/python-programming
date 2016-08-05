@@ -7,7 +7,7 @@ from matplotlib.colors import ListedColormap
 from pla import Perceptron
 
 def plot_decision_regions(X, y, classifier, resolution=0.02): 
-    markers = ('s', 'x', 'o', '^', 'v')
+    markers = ('x', 'o', 'o', '^', 'v')
     colors = ('red', 'blue', 'lightgreen', 'gary', 'cyan')
     cmap = ListedColormap(colors[:len(np.unique(y))])
     #plot the decision surface
@@ -35,7 +35,7 @@ def main():
     df.tail();
 
     y = df.iloc[0:99, 2].values
-    y = np.where(y == 'Normal', -1, 1)
+    y = np.where(y == 'Abnormal', -1, 1)
     X = df.iloc[0:99, [0,1]].values
 
     ppn = Perceptron(eta=0.1, n_iter=10) 
