@@ -8,6 +8,8 @@ $ sudo pip install numpy
 $ sudo pip install pandas
 </pre>
 
+How to setup code environment (on Windows)
+
 #Code Description
 
 #How to test
