@@ -9,6 +9,9 @@ $ sudo pip install pandas
 </pre>
 
 #How to setup code environment (on Windows)
+1. download and install Python
+https://www.python.org/downloads/
+2. install other modules
 <pre>
 $ pip install pandas
 $ pip install numpy
