@@ -50,7 +50,7 @@ def main():
 
     #a='-0.4,-0.66,1.44'
     print(a)
-    floats = map(float, a.split(','))
+    floats = list(map(float, a.split(',')))
     print('------------');
     print(floats)
     print('------------');
