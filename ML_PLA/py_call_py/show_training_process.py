@@ -12,9 +12,9 @@ def main():
     df = pd.read_csv('./iris.data',header=None)
     df.tail();
 
-    y = df.iloc[0:99, 4].values
+    y = df.iloc[0:99, 2].values
     y = np.where(y == 'Iris-setosa', -1, 1)
-    X = df.iloc[0:99, [0,2]].values
+    X = df.iloc[0:99, [0,1]].values
 
     ppn = Perceptron(eta=0.3, n_iter=10) 
     #training data
