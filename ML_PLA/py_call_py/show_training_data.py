@@ -7,7 +7,7 @@ import numpy as np
 
 def main():
     
-    df = pd.read_csv('./iris.data',header=None)
+    df = pd.read_csv('./sensor.data',header=None)
     df.tail();
 
     y = df.iloc[0:99, 2].values

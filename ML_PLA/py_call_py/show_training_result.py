@@ -31,7 +31,7 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
 
 def main():
     
-    df = pd.read_csv('./iris.data',header=None)
+    df = pd.read_csv('./sensor.data',header=None)
     df.tail();
 
     y = df.iloc[0:99, 2].values
