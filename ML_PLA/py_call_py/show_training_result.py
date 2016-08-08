@@ -53,8 +53,8 @@ def main():
     print("X_point = %s, predict result = %d" % (X_point,predict))
     
     plot_decision_regions(X, y, classifier=ppn)
-    plt.xlabel('Temperature')
-    plt.ylabel('Humidity')
+    plt.xlabel('Temperature (X1)')
+    plt.ylabel('Humidity (X2)')
     plt.legend(loc='upper left')
     plt.show();        
    
