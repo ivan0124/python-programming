@@ -17,8 +17,8 @@ def main():
     plt.scatter(X[:49, 0], X[:49, 1], color='red', marker='x', label='Abormal')
     plt.scatter(X[49:99, 0], X[49:99, 1], color='blue', marker='o', label='Normal')
 
-    plt.xlabel('Temperature')
-    plt.ylabel('Humidity')
+    plt.xlabel('Temperature (X1)')
+    plt.ylabel('Humidity (X2)')
     plt.legend(loc='upper left')
 
     plt.show()
