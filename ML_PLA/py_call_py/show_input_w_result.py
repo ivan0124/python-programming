@@ -39,6 +39,7 @@ def main():
     y = df.iloc[0:99, 2].values
     y = np.where(y == 'Abnormal', -1, 1)
     X = df.iloc[0:99, [0,1]].values
+    print("X array=%s" % (X))
 
     ppn = Perceptron(eta=0.1, n_iter=10) 
     #ppn.fit(X,y)
