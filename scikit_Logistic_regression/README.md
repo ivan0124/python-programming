@@ -1,2 +1,2 @@
-# scikit_hello
+# Scikit-Learn Logistic regression
 
