@@ -62,10 +62,9 @@ def main():
     X_train_std = sc.transform(X_train) 
     X_test_std = sc.transform(X_test)
    
-    #trainning model
-    ppn = Perceptron(n_iter=40, eta0=0.1, random_state=0)
-    ppn.fit(X_train_std, y_train)
-    joblib.dump(ppn, 'ppn.pkl') 
+    #Load trained model
+    ppn = joblib.load('ppn.pkl')
+    ppn.fit(X_train_std, y_train) 
 
     #predict
     y_pred = ppn.predict(X_test_std);
