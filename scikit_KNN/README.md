@@ -1,2 +1,2 @@
-# Scikit-Learn Kernel SVM
+# Scikit-Learn KNN (K-nearest neighbors)
 
