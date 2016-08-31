@@ -1,2 +1,2 @@
-# Scikit-Learn Decision Tree
+# Scikit-Learn Random Forests
 
