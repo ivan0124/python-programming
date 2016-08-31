@@ -61,7 +61,7 @@ def main():
     X_test_std = sc.transform(X_test)
    
     #trainning model
-    svm = SVC(kernel='linear', C=1.0, random_state=0)
+    svm = SVC(kernel='rbf', random_state=0, gamma=0.1, C=10.0)
     svm.fit(X_train_std, y_train) 
 
     #predict
