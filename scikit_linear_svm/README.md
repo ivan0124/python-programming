@@ -1,2 +1,2 @@
-# Scikit-Learn Logistic regression
+# Scikit-Learn Linear SVM
 
