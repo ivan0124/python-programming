@@ -1,2 +1,2 @@
-# Scikit-Learn Linear SVM
+# Scikit-Learn Kernel SVM
 
