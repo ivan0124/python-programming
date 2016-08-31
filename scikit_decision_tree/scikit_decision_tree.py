@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from sklearn import datasets
 from sklearn.cross_validation import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 
 def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02): 
@@ -61,11 +61,11 @@ def main():
     X_test_std = sc.transform(X_test)
    
     #trainning model
-    svm = SVC(kernel='rbf', random_state=0, gamma=0.1, C=10.0)
-    svm.fit(X_train_std, y_train) 
+    tree = DecisionTreeClassifier(criterion='entropy', max_depth=3, random_state=0)
+    tree.fit(X_train, y_train) 
 
     #predict
-    y_pred = svm.predict(X_test_std);
+    y_pred = tree.predict(X_test);
     print("Misclassified samples: %d" %(y_test != y_pred).sum()) 
     
     #Accuracy
@@ -74,14 +74,14 @@ def main():
     print("Accuracy: %.2f" % accuracy_score(y_test, y_pred))
 
     #
-    X_combined_std = np.vstack((X_train_std, X_test_std)) 
+    X_combined = np.vstack((X_train, X_test)) 
     y_combined = np.hstack((y_train, y_test))
-    plot_decision_regions(X=X_combined_std,
+    plot_decision_regions(X=X_combined,
                           y=y_combined,
-                          classifier=svm,
+                          classifier=tree,
                           test_idx=range(105,150))
-    plt.xlabel('petal length [standardized]')
-    plt.ylabel('petal width [standardized]')
+    plt.xlabel('petal length [cm]')
+    plt.ylabel('petal width [cm]')
     plt.legend(loc='upper left')
     plt.show()
  
