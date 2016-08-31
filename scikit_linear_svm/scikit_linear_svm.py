@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from sklearn import datasets
 from sklearn.cross_validation import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score
 
 def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02): 
@@ -61,11 +61,11 @@ def main():
     X_test_std = sc.transform(X_test)
    
     #trainning model
-    lr = LogisticRegression(C=1000.0, random_state=0)
-    lr.fit(X_train_std, y_train) 
+    svm = SVC(kernel='linear', C=1.0, random_state=0)
+    svm.fit(X_train_std, y_train) 
 
     #predict
-    y_pred = lr.predict(X_test_std);
+    y_pred = svm.predict(X_test_std);
     print("Misclassified samples: %d" %(y_test != y_pred).sum()) 
     
     #Accuracy
@@ -78,7 +78,7 @@ def main():
     y_combined = np.hstack((y_train, y_test))
     plot_decision_regions(X=X_combined_std,
                           y=y_combined,
-                          classifier=lr,
+                          classifier=svm,
                           test_idx=range(105,150))
     plt.xlabel('petal length [standardized]')
     plt.ylabel('petal width [standardized]')
