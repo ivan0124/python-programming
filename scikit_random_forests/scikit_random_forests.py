@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from sklearn import datasets
 from sklearn.cross_validation import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
 def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02): 
@@ -61,11 +61,14 @@ def main():
     X_test_std = sc.transform(X_test)
    
     #trainning model
-    tree = DecisionTreeClassifier(criterion='entropy', max_depth=3, random_state=0)
-    tree.fit(X_train, y_train) 
+    forest = RandomForestClassifier(criterion='entropy', 
+                                    n_estimators=10, 
+                                    random_state=1,
+                                    n_jobs=2)
+    forest.fit(X_train, y_train) 
 
     #predict
-    y_pred = tree.predict(X_test);
+    y_pred = forest.predict(X_test);
     print("Misclassified samples: %d" %(y_test != y_pred).sum()) 
     
     #Accuracy
@@ -78,7 +81,7 @@ def main():
     y_combined = np.hstack((y_train, y_test))
     plot_decision_regions(X=X_combined,
                           y=y_combined,
-                          classifier=tree,
+                          classifier=forest,
                           test_idx=range(105,150))
     plt.xlabel('petal length [cm]')
     plt.ylabel('petal width [cm]')
