@@ -1,2 +1,2 @@
-# scikit-Learn Perceptron
+# Scikit-Learn Perceptron
 
