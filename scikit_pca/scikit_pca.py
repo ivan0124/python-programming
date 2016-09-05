@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import numpy as np
+import pandas as pd
 from matplotlib.colors import ListedColormap
 import matplotlib.pyplot as plt
 
@@ -9,8 +10,9 @@ from sklearn.cross_validation import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
+from sklearn.decomposition import PCA
 
-def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02): 
+def plot_decision_regions(X, y, classifier, resolution=0.02): 
     markers = ['s', 'x', 'o', '^', 'v']
     colors = ['red', 'blue', 'lightgreen', 'gary', 'cyan']
     cmap = ListedColormap(colors[:len(np.unique(y))])
@@ -34,21 +36,20 @@ def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02):
         plt.scatter(x=X[y == cl, 0], y=X[y == cl, 1],
                     alpha=0.8, c=cmap(idx),
                     marker=markers[idx], label=cl)
-
+'''
     #highlight test samples
     if test_idx:
         X_test, y_test = X[test_idx, :], y[test_idx]
         plt.scatter(X_test[:,0], X_test[:, 1], c='',
                     alpha=1.0, linewidth=1, marker='o',
                     s=55, label='test set')
- 
+''' 
 
 def main():
 
     #import data
-    iris = datasets.load_iris()
-    X = iris.data[:,[2,3]]
-    y = iris.target
+    df_wine = pd.read_csv('./wine.data.csv')
+    X, y = df_wine.iloc[:, 1:].values, df_wine.iloc[:, 0].values
 
     #cross_validation
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
@@ -59,13 +60,18 @@ def main():
     sc.fit(X_train)
     X_train_std = sc.transform(X_train) 
     X_test_std = sc.transform(X_test)
+
+    #Feature extraction
+    pca = PCA(n_components=2)
+    X_train_pca = pca.fit_transform(X_train_std)
+    X_test_pca = pca.fit_transform(X_test_std) 
    
     #trainning model
     lr = LogisticRegression(C=1000.0, random_state=0)
-    lr.fit(X_train_std, y_train) 
+    lr.fit(X_train_pca, y_train) 
 
     #predict
-    y_pred = lr.predict(X_test_std);
+    y_pred = lr.predict(X_test_pca);
     print("Misclassified samples: %d" %(y_test != y_pred).sum()) 
     
     #Accuracy
@@ -74,15 +80,14 @@ def main():
     print("Accuracy: %.2f" % accuracy_score(y_test, y_pred))
 
     #
-    X_combined_std = np.vstack((X_train_std, X_test_std)) 
+    X_combined_std = np.vstack((X_train_pca, X_test_pca)) 
     y_combined = np.hstack((y_train, y_test))
-    plot_decision_regions(X=X_combined_std,
-                          y=y_combined,
-                          classifier=lr,
-                          test_idx=range(105,150))
-    plt.xlabel('petal length [standardized]')
-    plt.ylabel('petal width [standardized]')
-    plt.legend(loc='upper left')
+    plot_decision_regions(X_train_pca,
+                          y_train,
+                          classifier=lr)
+    plt.xlabel('PC1')
+    plt.ylabel('PC2')
+    plt.legend(loc='lower left')
     plt.show()
  
 
