@@ -17,5 +17,5 @@ $ sudo apt-get install python-numpy python-scipy python-matplotlib python-pandas
 </pre>
 
 #How to test
-1. run `ssk_random_forest.py`
+1. run `sk_random_forest.py`
 
