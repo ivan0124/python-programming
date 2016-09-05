@@ -1,4 +1,4 @@
-# Scikit-Learn Logistic regression
+# Scikit-Learn PCA (Principal Component Analysis)
 
 #How to install scikit-learn environment ( for Ubuntu 14.04 )
 Tutorial
