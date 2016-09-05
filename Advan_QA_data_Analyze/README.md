@@ -1,4 +1,4 @@
-# Scikit-Learn PCA (Principal Component Analysis)
+# Scikit-Learn Random Forest
 
 #How to install scikit-learn environment ( for Ubuntu 14.04 )
 Tutorial
@@ -17,5 +17,5 @@ $ sudo apt-get install python-numpy python-scipy python-matplotlib python-pandas
 </pre>
 
 #How to test
-1. run `scikit_pca.py`
+1. run `ssk_random_forest.py`
 
