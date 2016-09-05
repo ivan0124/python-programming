@@ -11,6 +11,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from sklearn.decomposition import PCA
+from sklearn.ensemble import RandomForestClassifier
+
 
 def plot_decision_regions(X, y, classifier, resolution=0.02): 
     markers = ['s', 'x', 'o', '^', 'v']
@@ -52,7 +54,7 @@ def main():
     X, y = df_wine.iloc[:, 1:].values, df_wine.iloc[:, 0].values
 
     #cross_validation
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
     #print (X_train) 
 
     #standardize the feature
@@ -67,24 +69,32 @@ def main():
     X_test_pca = pca.fit_transform(X_test_std) 
    
     #trainning model
-    lr = LogisticRegression(C=1000.0, random_state=0)
-    lr.fit(X_train_pca, y_train) 
+    #lr = LogisticRegression(C=1000.0, random_state=0)
+    #lr.fit(X_train_pca, y_train)
+    
+    forest = RandomForestClassifier(criterion='entropy', 
+                                    n_estimators=10, 
+                                    random_state=1,
+                                    n_jobs=2)
+    
+    forest.fit(X_train_pca, y_train)  
 
     #predict
-    y_pred = lr.predict(X_test_pca);
+    y_pred = forest.predict(X_test_pca);
     print("Misclassified samples: %d" %(y_test != y_pred).sum()) 
     
     #Accuracy
     print(y_test)
     print(y_pred)
     print("Accuracy: %.2f" % accuracy_score(y_test, y_pred))
+    #print(forest.predict_proba(X_test_pca))
 
     #
     X_combined_std = np.vstack((X_train_pca, X_test_pca)) 
     y_combined = np.hstack((y_train, y_test))
     plot_decision_regions(X_train_pca,
                           y_train,
-                          classifier=lr)
+                          classifier=forest)
     plt.xlabel('PC1')
     plt.ylabel('PC2')
     plt.legend(loc='lower left')
