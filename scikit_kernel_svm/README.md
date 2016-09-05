@@ -15,3 +15,6 @@ $ sudo apt-get install python-pip python-dev
 <pre>
 $ sudo apt-get install python-numpy python-scipy python-matplotlib python-pandas swig python-dev python-wheel
 </pre>
+
+#How to test
+1. run `scikit_kernel_svm.py`
