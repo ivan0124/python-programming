@@ -28,15 +28,7 @@ $ sudo apt-get install python-numpy swig python-dev python-wheel
 </pre>
 
 
-# How to use TensorBoard (for Ubuntu 14.04)
-1. run `tf_mlp.py` to generate logs
-<pre>
-$ ./tf_mlp.py
-</pre>
-2. specify logs folder and start `TensorBoard`
-<pre>
-$ tensorboard --logdir=./logs
-</pre>
-3. use Browser 127.0.0.1:6006 to see logs.
+# How to use Test
+1. run `tf_mlp.py`, then you will see the test result
 
-![link images](https://github.com/ivan0124/my-study/blob/master/TF_hello/images/20160822_5.png)
+
