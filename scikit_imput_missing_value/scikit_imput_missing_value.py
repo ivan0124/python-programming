@@ -51,7 +51,7 @@ def main():
     #import data
     ipd = pd.read_csv("./iris.csv")
     ipd.head()
-    print(ipd)
+    print(ipd.values)
     
     #imput missing data
     imr = Imputer(missing_values='NaN', strategy='mean', axis=0)
