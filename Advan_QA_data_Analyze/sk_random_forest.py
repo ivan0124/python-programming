@@ -38,26 +38,18 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
         plt.scatter(x=X[y == cl, 0], y=X[y == cl, 1],
                     alpha=0.8, c=cmap(idx),
                     marker=markers[idx], label=cl)
-'''
-    #highlight test samples
-    if test_idx:
-        X_test, y_test = X[test_idx, :], y[test_idx]
-        plt.scatter(X_test[:,0], X_test[:, 1], c='',
-                    alpha=1.0, linewidth=1, marker='o',
-                    s=55, label='test set')
-''' 
+
 
 def main():
 
-    #import data
+    #Import data
     df_wine = pd.read_csv('./HDD_Hitachi_HDS5C3030ALA630_data.csv')
     X, y = df_wine.iloc[:, 1:].values, df_wine.iloc[:, 0].values
 
-    #cross_validation
+    #Cross_validation
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
-    #print (X_train) 
 
-    #standardize the feature
+    #Standardize the feature
     sc = StandardScaler()
     sc.fit(X_train)
     X_train_std = sc.transform(X_train) 
@@ -68,10 +60,7 @@ def main():
     X_train_pca = pca.fit_transform(X_train_std)
     X_test_pca = pca.fit_transform(X_test_std) 
    
-    #trainning model
-    #lr = LogisticRegression(C=1000.0, random_state=0)
-    #lr.fit(X_train_pca, y_train)
-    
+    #Training model
     forest = RandomForestClassifier(criterion='entropy', 
                                     n_estimators=10, 
                                     random_state=1,
@@ -79,19 +68,16 @@ def main():
     
     forest.fit(X_train_pca, y_train)  
 
-    #predict
+    #Predict
     y_pred = forest.predict(X_test_pca);
     print("Misclassified samples: %d" %(y_test != y_pred).sum()) 
     
     #Accuracy
-    print(y_test)
-    print(y_pred)
+    print("correct label:%s" % y_test)
+    print("predict label:%s" % y_pred)
     print("Accuracy: %.2f" % accuracy_score(y_test, y_pred))
-    #print(forest.predict_proba(X_test_pca))
 
-    #
-    X_combined_std = np.vstack((X_train_pca, X_test_pca)) 
-    y_combined = np.hstack((y_train, y_test))
+    #Plot decision region
     plot_decision_regions(X_train_pca,
                           y_train,
                           classifier=forest)
