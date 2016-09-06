@@ -50,7 +50,7 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
 def main():
 
     #import data
-    df_wine = pd.read_csv('./data_7.csv')
+    df_wine = pd.read_csv('./HDD_Hitachi_HDS5C3030ALA630_data.csv')
     X, y = df_wine.iloc[:, 1:].values, df_wine.iloc[:, 0].values
 
     #cross_validation
