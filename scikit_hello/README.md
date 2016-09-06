@@ -5,6 +5,11 @@ Tutorial
 
 http://scikit-learn.org/stable/install.html
 
+1. install python
+<pre>
+$ sudo apt-get install python2.7
+</pre>
+
 2. install pip
 <pre>
 # Ubuntu/Linux 64-bit
@@ -14,6 +19,11 @@ $ sudo apt-get install python-pip python-dev
 3. install other dependencies
 <pre>
 $ sudo apt-get install python-numpy python-scipy python-matplotlib python-pandas swig python-dev python-wheel
+</pre>
+
+4. install scikit-learn
+<pre>
+$ pip install -U scikit-learn
 </pre>
 
 #How to test
