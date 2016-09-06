@@ -5,6 +5,11 @@ Tutorial
 
 http://scikit-learn.org/stable/install.html
 
+1. install python
+<pre>
+$ sudo apt-get install python2.7
+</pre>
+
 2. install pip
 <pre>
 # Ubuntu/Linux 64-bit
