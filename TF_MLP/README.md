@@ -25,6 +25,9 @@ $ sudo pip install --upgrade $TF_BINARY_URL
 <pre>
 # For Python 2.7:
 $ sudo apt-get install python-numpy swig python-dev python-wheel
+$ sudo pip install pandas
+$ sudo apt-get install libfreetype6-dev libpng-dev
+$ sudo pip install matplotlib
 </pre>
 
 
