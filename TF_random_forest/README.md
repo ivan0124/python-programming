@@ -1,6 +1,5 @@
 # TensorFlow random forest
 
-#TensorFlow
 Tutorial
 
 https://www.tensorflow.org/versions/r0.9/tutorials/tflearn/index.html
