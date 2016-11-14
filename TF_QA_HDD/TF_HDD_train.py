@@ -15,7 +15,7 @@ train_classes_num = 2
 train_num_trees=5
 train_max_nodes=1000
 train_steps=300
-train_model_dir='./myModel'
+train_model_dir='./HDD_prediction_model'
 
 # Remove current model
 try:
