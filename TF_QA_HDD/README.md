@@ -32,6 +32,14 @@ $ sudo pip install matplotlib
 
 
 # How to use Test
-1. run `TF_HDD_train.py`, then you will see the test result
+1. train model and save result in `./HDD_prediction_model`
+<pre>
+$ ./TF_HDD_train.py
+</pre>
+
+2. load train result `./HDD_prediction_model` and do prediction
+<pre>
+$ ./TF_HDD_prediction.py
+</pre>
 
 
