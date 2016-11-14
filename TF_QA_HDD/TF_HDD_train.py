@@ -36,7 +36,7 @@ y_test=y_test.astype(np.float)
 # Build random forest model.
 hparams = tf.contrib.tensor_forest.python.tensor_forest.ForestHParams(
         num_trees=train_num_trees, max_nodes=train_max_nodes, num_classes=train_classes_num, num_features=train_feature_num)
-classifier = tf.contrib.learn.TensorForestEstimator(hparams, model_dir=train_model_dir)
+classifier = tf.contrib.learn.TensorForestEstimator(hparams)
 
 # Fit model.
 classifier.fit(x=x_train, y=y_train, steps=train_steps)
