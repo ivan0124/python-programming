@@ -13,7 +13,7 @@ train_classes_num = 2
 train_num_trees=5
 train_max_nodes=1000
 train_steps=300
-#train_model_dir='./model.ckpt'
+train_model_dir='./myModel'
 
 
 # Load datasets.
@@ -22,7 +22,7 @@ ipd = pd.read_csv("./HDD_SMART_DATA.csv")
 # Load random forest model.
 hparams = tf.contrib.tensor_forest.python.tensor_forest.ForestHParams(
         num_trees=train_num_trees, max_nodes=train_max_nodes, num_classes=train_classes_num, num_features=train_feature_num)
-classifier = tf.contrib.learn.TensorForestEstimator(hparams,model_dir='./myModel')
+classifier = tf.contrib.learn.TensorForestEstimator(hparams,model_dir=train_model_dir)
 
 
 # Classify two new HDD samples.

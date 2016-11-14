@@ -3,6 +3,8 @@
 import tensorflow as tf
 import numpy as np
 import pandas as pd
+import os
+import shutil
 
 # Train parameters
 test_sample_rate = 0.3
@@ -13,8 +15,13 @@ train_classes_num = 2
 train_num_trees=5
 train_max_nodes=1000
 train_steps=300
-train_model_dir='./model.ckpt'
+train_model_dir='./myModel'
 
+# Remove current model
+try:
+	shutil.rmtree(train_model_dir)
+except OSError, e:
+	print ("Error: %s - %s." % (e.filename,e.strerror))
 
 # Load datasets.
 ipd = pd.read_csv("./HDD_SMART_DATA.csv")
@@ -36,7 +43,7 @@ y_test=y_test.astype(np.float)
 # Build random forest model.
 hparams = tf.contrib.tensor_forest.python.tensor_forest.ForestHParams(
         num_trees=train_num_trees, max_nodes=train_max_nodes, num_classes=train_classes_num, num_features=train_feature_num)
-classifier = tf.contrib.learn.TensorForestEstimator(hparams)
+classifier = tf.contrib.learn.TensorForestEstimator(hparams, model_dir=train_model_dir)
 
 # Fit model.
 classifier.fit(x=x_train, y=y_train, steps=train_steps)
@@ -47,7 +54,7 @@ print('Accuracy: {0:f}'.format(accuracy_score))
 
 
 # Classify two new HDD samples.
-new_samples = np.array(
-    [[97170872,0,47,2576,52386013778,22653,0,47,60,0,12,462175,26,0,0,0], [0,565,14,0,0,30433,0,14,0,0,1032,1032,25,0,0,0]], dtype=float)
-y = classifier.predict(new_samples)
-print ('Predictions: {}'.format(str(y)))
+for i in range(0,10):
+    new_samples = np.array(ipd.values[i*30:30*(i+1), train_feature_column], dtype=float)
+    y = classifier.predict(new_samples)
+    print ('Predictions: {}'.format(str(y)))
