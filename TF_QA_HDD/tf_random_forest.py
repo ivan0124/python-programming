@@ -8,10 +8,12 @@ import pandas as pd
 ipd = pd.read_csv("./HDD_S.csv")
 shuffled = ipd.sample(frac=1)
 
-x_train = shuffled.values[0:len(shuffled)-580,[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]]
-y_train = shuffled.values[0:len(shuffled)-580,[0]]
-x_test = shuffled.values[len(shuffled)-580:,[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]]
-y_test = shuffled.values[len(shuffled)-580:,[0]]
+x_test_sample_num = int(len(shuffled) * 0.3)
+print ("x_test_len = %s\n" % (x_test_sample_num))
+x_train = shuffled.values[0:len(shuffled)- x_test_sample_num,[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]]
+y_train = shuffled.values[0:len(shuffled)- x_test_sample_num,[0]]
+x_test = shuffled.values[len(shuffled)- x_test_sample_num:,[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]]
+y_test = shuffled.values[len(shuffled)- x_test_sample_num:,[0]]
 
 # Build random forest model.
 hparams = tf.contrib.tensor_forest.python.tensor_forest.ForestHParams(
