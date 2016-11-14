@@ -32,6 +32,6 @@ $ sudo pip install matplotlib
 
 
 # How to use Test
-1. run `tf_mlp.py`, then you will see the test result
+1. run `TF_HDD_prediction.py`, then you will see the test result
 
 
