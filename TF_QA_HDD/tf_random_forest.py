@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 # Load datasets.
-ipd = pd.read_csv("./HDD_S.csv")
+ipd = pd.read_csv("./HDD_SMART_DATA.csv")
 shuffled = ipd.sample(frac=1)
 
 x_test_sample_num = int(len(shuffled) * 0.3)
