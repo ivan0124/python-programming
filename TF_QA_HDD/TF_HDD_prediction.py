@@ -26,6 +26,12 @@ y_train = shuffled.values[0:len(shuffled)- x_test_sample_num, train_label_column
 x_test = shuffled.values[len(shuffled)- x_test_sample_num:, train_feature_column]
 y_test = shuffled.values[len(shuffled)- x_test_sample_num:, train_label_column]
 
+# change datasets type
+x_train=x_train.astype(np.float)
+x_test=x_test.astype(np.float)
+y_train=y_train.astype(np.float)
+y_test=y_test.astype(np.float)
+
 # Build random forest model.
 hparams = tf.contrib.tensor_forest.python.tensor_forest.ForestHParams(
         num_trees=train_num_trees, max_nodes=train_max_nodes, num_classes=train_classes_num, num_features=train_feature_num)
