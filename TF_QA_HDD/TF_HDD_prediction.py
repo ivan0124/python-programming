@@ -26,7 +26,7 @@ y_train = shuffled.values[0:len(shuffled)- x_test_sample_num, train_label_column
 x_test = shuffled.values[len(shuffled)- x_test_sample_num:, train_feature_column]
 y_test = shuffled.values[len(shuffled)- x_test_sample_num:, train_label_column]
 
-# change datasets type
+# Change datasets value type to float
 x_train=x_train.astype(np.float)
 x_test=x_test.astype(np.float)
 y_train=y_train.astype(np.float)
