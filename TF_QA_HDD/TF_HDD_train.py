@@ -52,7 +52,7 @@ accuracy_score = classifier.evaluate(x=x_test, y=y_test)["accuracy"]
 print('Accuracy: {0:f}'.format(accuracy_score))
 
 
-# Classify two new HDD samples.
+# Classify HDD samples.
 for i in range(0,10):
     new_samples = np.array(ipd.values[i*30:30*(i+1), train_feature_column], dtype=float)
     y = classifier.predict(new_samples)
