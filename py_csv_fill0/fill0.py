@@ -13,7 +13,7 @@ def main():
          #        if len(x)< 1:
          #            x = row[i] = 0
          #        print x
-         with open("result.cvs","wb") as result:
+         with open("result.csv","wb") as result:
              wtr= csv.writer( result )
              for r in rdr:
                  for i, x in enumerate(r):
