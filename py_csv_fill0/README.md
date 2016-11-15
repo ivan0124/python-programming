@@ -28,7 +28,10 @@ $ sudo apt-get install python-numpy swig python-dev python-wheel
 </pre>
 
 
-# How to use Test
-1. run `tf_mlp.py`, then you will see the test result
+# How to Test
+1. use `fill0.py` to fill `hdd.csv` space as 0
+<pre>
+$ ./fill0.py
+</pre>
 
 
