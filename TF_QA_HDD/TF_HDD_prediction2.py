@@ -37,6 +37,7 @@ for i in range(0,len(ipd)):
     #print ('Predictions: {}'.format(str(y)))
     if y == 1:
         fail_count += 1
-        print("y == 1, total count=%s, fail count = %s\n" % (i,fail_count))
+        fail_rate = float(fail_count) / float(i)
+        print("y == 1, total count=%s, fail count = %s, fail rate=%s\n" % (i,fail_count, fail_rate))
 
 print("total count=%s, fail count = %s\n" % (i,fail_count))
