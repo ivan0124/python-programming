@@ -9,7 +9,7 @@ http://camron.xyz/index.php/2016/10/03/nutshell-all-the-models/
 
 #How to test
 <pre>
-$ ./tf_random_forest
+$ ./tf_dnn.py
 </pre>
 
 
