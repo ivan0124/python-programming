@@ -68,8 +68,9 @@ def main():
     #y_ is correct label
     y_ = tf.placeholder(tf.float32, [None, 3])
 
+    yy = y_*tf.log(y)
     #cost function
-    cross_entropy = -tf.reduce_sum(y_*tf.log(y))
+    cross_entropy = -tf.reduce_sum(yy)
 
     #set optimizer algorithm
     train_step = tf.train.AdamOptimizer(0.01).minimize(cross_entropy)
@@ -103,8 +104,15 @@ def main():
             printProgress(i, epochs, prefix = 'Progress:', suffix = 'Complete', barLength = 50)
 
         train = trainingSet.sample(50)
+
+        #print ("=y=\n%s" % sess.run(y, feed_dict={inp: [x for x in train[keys].values]}))
+        #print ("=yy=\n%s" % sess.run(yy, feed_dict={inp: [x for x in train[keys].values],
+        #                                            y_: [x for x in train['One-hot'].as_matrix()]}))
+        #print ("==y_==\n %s" % ([x for x in train['One-hot'].as_matrix()]))
+
         summary_str, _ = sess.run([merged_summary_op, train_step], feed_dict={inp: [x for x in train[keys].values],
                                                          y_: [x for x in train['One-hot'].as_matrix()]})
+
         summary_writer.add_summary(summary_str, i)
 
         test_str, acc = sess.run([merged_summary_op, accuracy], feed_dict={inp: [x for x in testSet[keys].values],
