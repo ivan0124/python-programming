@@ -121,19 +121,41 @@ def main():
 
     printProgress(epochs, epochs, prefix = 'Progress:', suffix = 'Complete', barLength = 50)
     
-    #print train result
-
+    #print train result (TensorFlow)
     print ("\nStep8: Show fit result:\n")
-
-    array = sess.run(y, feed_dict={inp: [x for x in testSet[keys].values]})
-    print ("len(array)=\n%s" % (len(array)))
-    print ("=y(prediction)=\n%s" % array)
-
     print ("=weight=\n%s" % sess.run(weights))
     print ("=bias=\n%s" % sess.run(bias))
-    print ("=accuracy=\n%s" % sess.run(accuracy, feed_dict={inp: [x for x in testSet[keys].values], 
+    print ("=accuracy(TensorFlow)=\n%s" % sess.run(accuracy, feed_dict={inp: [x for x in testSet[keys].values], 
                                     y_: [x for x in testSet['One-hot'].values]}))
 
+    #print ("train['One-hot'].as_matrix()=\n%s" % ( train['One-hot'].as_matrix()[0][0]))
+
+    #######################################
+    #print train result (self-caculate)
+    array = sess.run(y, feed_dict={inp: [x for x in testSet[keys].values]})
+    #print ("len(array)=\n%s" % (len(array)))
+    array_maxarg = np.argmax(array, axis=1);
+    #print ("array_maxarg = \n%s" % (array_maxarg))
+    for i in range(len(array)):
+        array[i][0] = 0;
+        array[i][1] = 0;
+        array[i][2] = 0;
+        array[i][array_maxarg[i]]=1;
+
+    #print ("=y(prediction result)=\n%s" % array)
+    
+    y_label =  testSet['One-hot'].as_matrix();
+    #print ("correct y_label = \n%s" % (y_label))
+
+    count=0
+    for i in range(len(array)):
+        if array[i][0] == y_label[i][0] and array[i][1] == y_label[i][1] and array[i][2] == y_label[i][2]:
+            count += 1;
+       
+
+    my_accuracy = float(count)/float(len(array)); 
+    print ("my_accuracy = %s\n" % my_accuracy);
+        
     #train = trainingSet.sample(50)
     #print ("train['One-hot'].as_matrix()=\n%s" % ([x for x in train['One-hot'].as_matrix()]))
 
