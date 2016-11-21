@@ -124,11 +124,13 @@ def main():
     #print train result
 
     print ("\nStep8: Show fit result:\n")
-    print ("=accuracy=\n%s" % sess.run(accuracy, feed_dict={inp: [x for x in testSet[keys].values], 
-                                    y_: [x for x in testSet['One-hot'].values]}))
+
+    print ("=y=\n%s" % sess.run(y, feed_dict={inp: [x for x in testSet[keys].values]}))
 
     print ("=weight=\n%s" % sess.run(weights))
     print ("=bias=\n%s" % sess.run(bias))
+    print ("=accuracy=\n%s" % sess.run(accuracy, feed_dict={inp: [x for x in testSet[keys].values], 
+                                    y_: [x for x in testSet['One-hot'].values]}))
 
     #train = trainingSet.sample(50)
     #print ("train['One-hot'].as_matrix()=\n%s" % ([x for x in train['One-hot'].as_matrix()]))
