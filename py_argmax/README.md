@@ -1,4 +1,4 @@
 #How to test
 <pre>
-$ ./test_map.py
+$ ./test_argmax.py
 </pre>
