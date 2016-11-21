@@ -136,11 +136,14 @@ def main():
     #print ("len(array)=\n%s" % (len(array)))
     array_maxarg = np.argmax(array, axis=1);
     #print ("array_maxarg = \n%s" % (array_maxarg))
+    threshold = 0.1;
     for i in range(len(array)):
-        array[i][0] = 0;
-        array[i][1] = 0;
-        array[i][2] = 0;
-        array[i][array_maxarg[i]]=1;
+        if array[i][array_maxarg[i]] > threshold:
+            array[i][array_maxarg[i]]=1;
+        for j in range(3):
+            if j != array_maxarg[i]:
+                array[i][j]=0;
+
 
     #print ("=y(prediction result)=\n%s" % array)
     
