@@ -1,4 +1,4 @@
 #How to test
 <pre>
-$ ./test_if.py
+$ ./tf_matrix_math.py
 </pre>
