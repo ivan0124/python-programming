@@ -125,7 +125,7 @@ def main():
 
     print ("\nStep8: Show fit result:\n")
 
-    print ("=y=\n%s" % sess.run(y, feed_dict={inp: [x for x in testSet[keys].values]}))
+    print ("=y(prediction)=\n%s" % sess.run(y, feed_dict={inp: [x for x in testSet[keys].values]}))
 
     print ("=weight=\n%s" % sess.run(weights))
     print ("=bias=\n%s" % sess.run(bias))
