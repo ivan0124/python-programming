@@ -1,4 +1,4 @@
-# TensorFlow random forest
+# TensorFlow DNN(Deep Neural Networks)
 
 Tutorial
 
