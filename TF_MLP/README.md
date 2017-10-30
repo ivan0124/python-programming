@@ -12,7 +12,7 @@ $ sudo apt-get install python-pip python-dev
 3. export path
 <pre>
 # Ubuntu/Linux 64-bit, CPU only, Python 2.7
-$ export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.10.0rc0-cp27-none-linux_x86_64.whl
+$ export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.3.0-cp27-none-linux_x86_64.whl
 </pre>
 
 4. install TensorFlow
