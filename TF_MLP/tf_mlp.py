@@ -78,7 +78,7 @@ biases = {
 y = multilayer_perceptron(inp, weights, biases)
 
 # Define loss and optimizer
-cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(y, y_))
+cost = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(logits=y, labels=y_))
 #cost = -tf.reduce_sum(y_*tf.log(y))
 train_step= tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
 
