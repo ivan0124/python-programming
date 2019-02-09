@@ -6,6 +6,8 @@ import random
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import os
+from tensorflow.python.framework import graph_util
 
 ipd = pd.read_csv("./iris.csv")
 ipd.head()
@@ -78,12 +80,18 @@ biases = {
 y = multilayer_perceptron(inp, weights, biases)
 
 # Define loss and optimizer
-cost = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(logits=y, labels=y_))
+cost = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits_v2(logits=y, labels=y_))
 #cost = -tf.reduce_sum(y_*tf.log(y))
 train_step= tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
 
 # Initializing the variables
-init = tf.initialize_all_variables()
+#init = tf.initialize_all_variables() #old function
+init = tf.global_variables_initializer() #new function
+
+# Create file to store pb model
+prediction_labels = tf.argmax(y, axis=1, name="output") # 'output' name is important
+pb_file_path = os.getcwd()
+print(pb_file_path)
 
 # Launch the graph
 with tf.Session() as sess:
@@ -103,4 +111,9 @@ with tf.Session() as sess:
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
     print ("=accuracy=\n%s" % sess.run(accuracy, feed_dict={inp: [x for x in testSet[keys].values], 
                                     y_: [x for x in testSet['One-hot'].values]}))
+
+    #store model to pb file
+    constant_graph = graph_util.convert_variables_to_constants(sess,sess.graph_def, ["output"]) # 'output' name is important
+    with tf.gfile.GFile(pb_file_path+'/model.pb', mode='wb') as f:
+        f.write(constant_graph.SerializeToString())
     
