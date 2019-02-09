@@ -89,7 +89,7 @@ train_step= tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
 init = tf.global_variables_initializer() #new function
 
 # Create file to store pb model
-prediction_labels = tf.argmax(y, axis=1, name="output") # 'output' name is important
+prediction_labels = tf.argmax(tf.nn.softmax_cross_entropy_with_logits_v2(logits=y, labels=y_), axis=1, name="output") # 'output' name is important
 pb_file_path = os.getcwd()
 print(pb_file_path)
 
