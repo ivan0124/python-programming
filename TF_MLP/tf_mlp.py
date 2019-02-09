@@ -6,9 +6,21 @@ import random
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import os
+import os, shutil
 from tensorflow.python.framework import graph_util
 
+#clear history log
+folder = './logs'
+for the_file in os.listdir(folder):
+    file_path = os.path.join(folder, the_file)
+    try:
+        if os.path.isfile(file_path):
+            os.unlink(file_path)
+        #elif os.path.isdir(file_path): shutil.rmtree(file_path)
+    except Exception as e:
+        print(e)
+
+#load iris.csv data
 ipd = pd.read_csv("./iris.csv")
 ipd.head()
 
@@ -80,9 +92,13 @@ biases = {
 y = multilayer_perceptron(inp, weights, biases)
 
 # Define loss and optimizer
-cost = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits_v2(logits=y, labels=y_))
+with tf.name_scope('cross_entropy'):
+    cost = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits_v2(logits=y, labels=y_))
+
+tf.summary.scalar('cross_entropy', cost)
 #cost = -tf.reduce_sum(y_*tf.log(y))
 train_step= tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
+
 
 # Initializing the variables
 #init = tf.initialize_all_variables() #old function
@@ -95,14 +111,21 @@ print(pb_file_path)
 
 # Launch the graph
 with tf.Session() as sess:
+# Merge all the summaries and write them out to ./train
+    #tf.summary.scalar('cross_entropy', cost)
+    merged = tf.summary.merge_all()
+    train_writer = tf.summary.FileWriter('./logs',sess.graph)
+    
+#init variable
     sess.run(init)
-
     # Training cycle
     keys = ['sepal_length', 'sepal_width','petal_length', 'petal_width']
     for epoch in range(training_epochs):
         train = trainingSet.sample(50)
-        sess.run(train_step, feed_dict={inp: [x for x in train[keys].values],
+        summary, predict_value = sess.run([merged, train_step], feed_dict={inp: [x for x in train[keys].values],
                                          y_: [x for x in train['One-hot'].as_matrix()]})
+        train_writer.add_summary(summary, epoch)
+
     print("Optimization Finished!")
 
     # Test model
