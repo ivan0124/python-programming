@@ -79,21 +79,26 @@ def multilayer_perceptron(x):
     with tf.name_scope('layer1'):
         layer_1 = tf.add(tf.matmul(x, weights['h1']), biases['b1'])
         layer_1 = tf.nn.relu(layer_1)
+        tf.summary.histogram('layer1_output', layer_1)
     # Hidden layer2 with RELU activation
     with tf.name_scope('layer2'):
         layer_2 = tf.add(tf.matmul(layer_1, weights['h2']), biases['b2'])
         layer_2 = tf.nn.relu(layer_2)
+        tf.summary.histogram('layer2_output', layer_2)
     # Hidden layer3 with RELU activation
     with tf.name_scope('layer3'):
         layer_3 = tf.add(tf.matmul(layer_2, weights['h3']), biases['b3'])
         layer_3 = tf.nn.relu(layer_3)
+        tf.summary.histogram('layer3_output', layer_3)
     # Hidden layer4 with RELU activation
     with tf.name_scope('layer4'):
         layer_4 = tf.add(tf.matmul(layer_3, weights['h4']), biases['b4'])
         layer_4 = tf.nn.relu(layer_4)
+        tf.summary.histogram('layer4_output', layer_4)
     # Output layer with linear activation
     with tf.name_scope('output_layer'):
         out_layer = tf.matmul(layer_4, weights['out']) + biases['out']
+        tf.summary.histogram('output_layer', out_layer)
     return out_layer
 
 
@@ -102,14 +107,14 @@ with tf.name_scope('MLP'):
     y = multilayer_perceptron(inp)
 
 # Define loss
-with tf.name_scope('softmax_cross_entropy_with_logits'):
-    cross_entropy=tf.nn.softmax_cross_entropy_with_logits_v2(logits=y, labels=y_)
 with tf.name_scope('total_loss'):
+    cross_entropy=tf.nn.softmax_cross_entropy_with_logits_v2(logits=y, labels=y_)
+#with tf.name_scope('total_loss'):
     loss = tf.reduce_sum(cross_entropy)
     tf.summary.scalar('total_loss', loss)
 
 #Define Optimizer
-with tf.name_scope('Optimizer'):
+with tf.name_scope('train'):
     train_step= tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(loss)
 
 
