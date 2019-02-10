@@ -50,73 +50,77 @@ n_input = 4 # Iris data input (img shape: 1*4)
 n_classes = 3 # Iris total 3 classes
 
 # tf Graph input
-inp = tf.placeholder(tf.float32, [None, n_input])
-y_ = tf.placeholder(tf.float32, [None, n_classes])
+with tf.name_scope('input_data'):
+    inp = tf.placeholder(tf.float32, [None, n_input])
+with tf.name_scope('OneHot_label'):
+    y_ = tf.placeholder(tf.float32, [None, n_classes])
 
 
 # Create model
-def multilayer_perceptron(x, weights, biases):
+def multilayer_perceptron(x):
+# Store layers weight & bias
+    with tf.name_scope('weight'):
+        weights = {
+            'h1': tf.Variable(tf.random_normal([n_input, n_hidden_1])),
+            'h2': tf.Variable(tf.random_normal([n_hidden_1, n_hidden_2])),
+            'h3': tf.Variable(tf.random_normal([n_hidden_2, n_hidden_3])),
+            'h4': tf.Variable(tf.random_normal([n_hidden_3, n_hidden_4])),
+            'out': tf.Variable(tf.random_normal([n_hidden_4, n_classes]))
+        }
+    with tf.name_scope('bias'):
+        biases = {
+            'b1': tf.Variable(tf.random_normal([n_hidden_1])),
+            'b2': tf.Variable(tf.random_normal([n_hidden_2])),
+            'b3': tf.Variable(tf.random_normal([n_hidden_3])),
+            'b4': tf.Variable(tf.random_normal([n_hidden_4])),
+            'out': tf.Variable(tf.random_normal([n_classes]))
+        }
     # Hidden layer1 with RELU activation
-    layer_1 = tf.add(tf.matmul(x, weights['h1']), biases['b1'])
-    layer_1 = tf.nn.relu(layer_1)
+    with tf.name_scope('layer1'):
+        layer_1 = tf.add(tf.matmul(x, weights['h1']), biases['b1'])
+        layer_1 = tf.nn.relu(layer_1)
     # Hidden layer2 with RELU activation
-    layer_2 = tf.add(tf.matmul(layer_1, weights['h2']), biases['b2'])
-    layer_2 = tf.nn.relu(layer_2)
+    with tf.name_scope('layer2'):
+        layer_2 = tf.add(tf.matmul(layer_1, weights['h2']), biases['b2'])
+        layer_2 = tf.nn.relu(layer_2)
     # Hidden layer3 with RELU activation
-    layer_3 = tf.add(tf.matmul(layer_2, weights['h3']), biases['b3'])
-    layer_3 = tf.nn.relu(layer_3)
+    with tf.name_scope('layer3'):
+        layer_3 = tf.add(tf.matmul(layer_2, weights['h3']), biases['b3'])
+        layer_3 = tf.nn.relu(layer_3)
     # Hidden layer4 with RELU activation
-    layer_4 = tf.add(tf.matmul(layer_3, weights['h4']), biases['b4'])
-    layer_4 = tf.nn.relu(layer_4)
+    with tf.name_scope('layer4'):
+        layer_4 = tf.add(tf.matmul(layer_3, weights['h4']), biases['b4'])
+        layer_4 = tf.nn.relu(layer_4)
     # Output layer with linear activation
-    out_layer = tf.matmul(layer_4, weights['out']) + biases['out']
+    with tf.name_scope('output_layer'):
+        out_layer = tf.matmul(layer_4, weights['out']) + biases['out']
     return out_layer
 
-# Store layers weight & bias
-weights = {
-    'h1': tf.Variable(tf.random_normal([n_input, n_hidden_1])),
-    'h2': tf.Variable(tf.random_normal([n_hidden_1, n_hidden_2])),
-    'h3': tf.Variable(tf.random_normal([n_hidden_2, n_hidden_3])),
-    'h4': tf.Variable(tf.random_normal([n_hidden_3, n_hidden_4])),
-    'out': tf.Variable(tf.random_normal([n_hidden_4, n_classes]))
-}
-biases = {
-    'b1': tf.Variable(tf.random_normal([n_hidden_1])),
-    'b2': tf.Variable(tf.random_normal([n_hidden_2])),
-    'b3': tf.Variable(tf.random_normal([n_hidden_3])),
-    'b4': tf.Variable(tf.random_normal([n_hidden_4])),
-    'out': tf.Variable(tf.random_normal([n_classes]))
-}
 
-# Construct model
-y = multilayer_perceptron(inp, weights, biases)
+# Define MLP network model
+with tf.name_scope('MLP'):
+    y = multilayer_perceptron(inp)
 
-# Define loss and optimizer
-with tf.name_scope('cross_entropy'):
-    cost = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits_v2(logits=y, labels=y_))
+# Define loss
+with tf.name_scope('softmax_cross_entropy_with_logits'):
+    cross_entropy=tf.nn.softmax_cross_entropy_with_logits_v2(logits=y, labels=y_)
+with tf.name_scope('total_loss'):
+    loss = tf.reduce_sum(cross_entropy)
+    tf.summary.scalar('total_loss', loss)
 
-tf.summary.scalar('cross_entropy', cost)
-#cost = -tf.reduce_sum(y_*tf.log(y))
-train_step= tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
+#Define Optimizer
+with tf.name_scope('Optimizer'):
+    train_step= tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(loss)
 
-
-# Initializing the variables
-#init = tf.initialize_all_variables() #old function
-init = tf.global_variables_initializer() #new function
-
-# Create file to store pb model
-prediction_labels = tf.argmax(tf.nn.softmax_cross_entropy_with_logits_v2(logits=y, labels=y_), axis=1, name="output") # 'output' name is important
-pb_file_path = os.getcwd()
-print(pb_file_path)
 
 # Launch the graph
 with tf.Session() as sess:
 # Merge all the summaries and write them out to ./train
-    #tf.summary.scalar('cross_entropy', cost)
     merged = tf.summary.merge_all()
     train_writer = tf.summary.FileWriter('./logs',sess.graph)
     
-#init variable
+# Initializing the variables
+    init = tf.global_variables_initializer() #new function
     sess.run(init)
     # Training cycle
     keys = ['sepal_length', 'sepal_width','petal_length', 'petal_width']
@@ -135,6 +139,10 @@ with tf.Session() as sess:
     print ("=accuracy=\n%s" % sess.run(accuracy, feed_dict={inp: [x for x in testSet[keys].values], 
                                     y_: [x for x in testSet['One-hot'].values]}))
 
+    # Create file to store pb model
+    prediction_labels = tf.argmax(tf.nn.softmax_cross_entropy_with_logits_v2(logits=y, labels=y_), axis=1, name="output") # 'output' name is important
+    pb_file_path = os.getcwd()
+    print(pb_file_path)
     #store model to pb file
     constant_graph = graph_util.convert_variables_to_constants(sess,sess.graph_def, ["output"]) # 'output' name is important
     with tf.gfile.GFile(pb_file_path+'/model.pb', mode='wb') as f:
