@@ -36,4 +36,5 @@ $ sudo pip install matplotlib
 
 # How to run TensorBoard
 1.tensorboard --logdir ./logs/
+
 2.Launch browser and go to http://127.0.0.1:6006
