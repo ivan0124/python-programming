@@ -1,4 +1,4 @@
-#How to setup TensorFlow environment ( for Ubuntu 14.04 64bit/single CPU)
+#How to setup TensorFlow environment ( for Ubuntu 16.04 64bit/single CPU)
 Tutorial
 
 https://www.tensorflow.org/versions/r0.10/get_started/os_setup.html
