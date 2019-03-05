@@ -5,7 +5,7 @@ Following python packages are required to run this file:
     sudo pip install scikit-learn
     sudo pip install keras
     sudo pip install imutils
-    pip install opencv-python
+    sudo pip install opencv-python
 </pre>
 
 # How train model
