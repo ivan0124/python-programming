@@ -1,11 +1,8 @@
 Step1: **Install R and R Studio**
 * [How to install R and R Studio](https://github.com/ivan0124/python-programming/wiki/How-to-install-R-and-R-Studio)
 
+Step2: **Launch R script**
+* `$Rscript hello.R`
 
-# How to use Test
-1. run `tf_mlp.py`, then you will see the test result
-
-# How to run TensorBoard
-1.tensorboard --logdir ./logs/
-
-2.Launch browser and go to http://127.0.0.1:6006
+Step3: **Check the result**
+* check the **Rplot.pdf** 
