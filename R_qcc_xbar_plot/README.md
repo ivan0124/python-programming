@@ -3,5 +3,5 @@ Step1: **Install R and R Studio**
 
 Step2: **Launch R script**
 
-![result link](https://github.com/ivan0124/python-programming/blob/master/images/R_20190315_3.png)
+![result link](https://github.com/ivan0124/python-programming/blob/master/images/R_20190315_5.png)
 
