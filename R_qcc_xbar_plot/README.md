@@ -7,9 +7,9 @@ Step2: **Launch R script**
 
 #Theorem (Example)
 
-![result link](https://github.com/ivan0124/python-programming/blob/master/images/M_20190317_5.png)
-
 ![result link](https://github.com/ivan0124/python-programming/blob/master/images/M_20190317_6.png)
+
+![result link](https://github.com/ivan0124/python-programming/blob/master/images/M_20190317_5.png)
 
 ![result link](https://github.com/ivan0124/python-programming/blob/master/images/M_20190317_7.png)
 
