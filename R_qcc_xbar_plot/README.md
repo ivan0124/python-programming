@@ -5,3 +5,12 @@ Step2: **Launch R script**
 
 ![result link](https://github.com/ivan0124/python-programming/blob/master/images/R_20190315_5.png)
 
+#Theorem (Example)
+
+![result link](https://github.com/ivan0124/python-programming/blob/master/images/M_20190317_5.png)
+
+![result link](https://github.com/ivan0124/python-programming/blob/master/images/M_20190317_6.png)
+
+![result link](https://github.com/ivan0124/python-programming/blob/master/images/M_20190317_7.png)
+
+
