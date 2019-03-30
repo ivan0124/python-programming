@@ -17,3 +17,5 @@ $ python train_network.py --dataset images --model santa_not_santa.model
 <pre>
 $ python test_network.py --model santa_not_santa.model --image examples/santa_01.png
 </pre>
+
+Reference from : https://www.pyimagesearch.com/2017/12/11/image-classification-with-keras-and-deep-learning/
