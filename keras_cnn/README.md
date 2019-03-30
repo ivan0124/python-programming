@@ -8,7 +8,7 @@ Following python packages are required to run this file:
     sudo pip install opencv-python
 </pre>
 
-# How train model
+# How to train model
 <pre>
 $ python train_network.py --dataset images --model santa_not_santa.model
 </pre>
